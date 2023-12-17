@@ -126,9 +126,7 @@ function dateSample(sampleActivity) {
 		['13.075499143313442', 1136],
 		['6.555955979600091', 6843]
 	]);
-	// if (obj[sampleActivity]) {
-	// 	return obj[sampleActivity];
-	// }
+
 	return obj.has(sampleActivity) ? obj.get(sampleActivity) : false;
 }
 

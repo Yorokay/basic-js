@@ -23,11 +23,187 @@ const { NotImplementedError } = require('../extensions/index.js');
  *  [1, 1, 1]
  * ]
  */
-function minesweeper(/* matrix */) {
-  throw new NotImplementedError('Not implemented');
-  // remove line with error and write your code here
-}
+function minesweeper(matrix) {
+	let newMatrix = [];
+	for (let i = 0; i < matrix.length; i++) {
+		let currentRow = matrix[i];
+		console.log(i);
+		console.log(currentRow);
+		// matrix[i] = currentRow.map((item, index) => index)
+		if (i === 0) {
+			let nextRow = matrix[i + 1];
+			newMatrix.push(currentRow.map((item, index) => {
+				item = 0;
+				if (index === 0) {
+					// for (let j = 1; j <= 3; j++) {
+					// 	if (currentRow[index + 1] === true || nextRow[index] === true ||
+					// 		nextRow[index + 1] === true) {
+
+					// 	}
+					// }
+					if (currentRow[index + 1] === true) {
+						item += 1;
+					}
+					if (nextRow[index] === true) {
+						item += 1;
+					}
+					if (nextRow[index + 1] === true) {
+						item += 1;
+					}
+				}
+
+				else if (index === currentRow.length - 1) {
+					if (currentRow[index - 1] === true) {
+						item += 1;
+					}
+					if (nextRow[index] === true) {
+						item += 1;
+					}
+					if (nextRow[index - 1] === true) {
+						item += 1;
+					}
+				}
+				else {
+					if (currentRow[index + 1] === true) {
+						item += 1;
+					}
+					if (currentRow[index - 1] === true) {
+						item += 1;
+					}
+					if (nextRow[index] === true) {
+						item += 1;
+					}
+					if (nextRow[index - 1] === true) {
+						item += 1;
+					}
+					if (nextRow[index + 1] === true) {
+						item += 1;
+					}
+				}
+				return item;
+			}));
+		}
+		else if (i === matrix.length - 1) {
+			let preventRow = matrix[i - 1];
+			newMatrix.push(currentRow.map((item, index) => {
+				item = 0;
+				if (index === 0) {
+					if (currentRow[index + 1] === true) {
+						item += 1;
+					}
+					if (preventRow[index] === true) {
+						item += 1;
+					}
+					if (preventRow[index + 1] === true) {
+						item += 1;
+					}
+				}
+
+				else if (index === currentRow.length - 1) {
+					if (currentRow[index - 1] === true) {
+						item += 1;
+					}
+					if (preventRow[index] === true) {
+						item += 1;
+					}
+					if (preventRow[index - 1] === true) {
+						item += 1;
+					}
+				}
+				else {
+					if (currentRow[index + 1] === true) {
+						item += 1;
+					}
+					if (currentRow[index - 1] === true) {
+						item += 1;
+					}
+					if (preventRow[index] === true) {
+						item += 1;
+					}
+					if (preventRow[index - 1] === true) {
+						item += 1;
+					}
+					if (preventRow[index + 1] === true) {
+						item += 1;
+					}
+				}
+				return item;
+			}));
+		}
+		else {
+			let nextRow = matrix[i + 1];
+			let preventRow = matrix[i - 1];
+			newMatrix.push(currentRow.map((item, index) => {
+				item = 0;
+				if (index === 0) {
+					if (currentRow[index + 1] === true) {
+						item += 1;
+					}
+					if (nextRow[index] === true) {
+						item += 1;
+					}
+					if (nextRow[index + 1] === true) {
+						item += 1;
+					}
+					if (preventRow[index] === true) {
+						item += 1;
+					}
+					if (preventRow[index + 1] === true) {
+						item += 1;
+					}
+				}
+
+				else if (index === currentRow.length - 1) {
+					if (currentRow[index - 1] === true) {
+						item += 1;
+					}
+					if (nextRow[index] === true) {
+						item += 1;
+					}
+					if (nextRow[index - 1] === true) {
+						item += 1;
+					}
+					if (preventRow[index] === true) {
+						item += 1;
+					}
+					if (preventRow[index - 1] === true) {
+						item += 1;
+					}
+				}
+				else {
+					if (currentRow[index + 1] === true) {
+						item += 1;
+					}
+					if (currentRow[index - 1] === true) {
+						item += 1;
+					}
+					if (nextRow[index] === true) {
+						item += 1;
+					}
+					if (nextRow[index - 1] === true) {
+						item += 1;
+					}
+					if (nextRow[index + 1] === true) {
+						item += 1;
+					}
+					if (preventRow[index] === true) {
+						item += 1;
+					}
+					if (preventRow[index - 1] === true) {
+						item += 1;
+					}
+					if (preventRow[index + 1] === true) {
+						item += 1;
+					}
+				}
+				return item;
+			}));
+		}
+	}
+	return newMatrix;
+};
 
 module.exports = {
-  minesweeper
+	minesweeper
 };
+

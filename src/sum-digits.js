@@ -29,4 +29,3 @@ module.exports = {
 	getSumOfDigits
 };
 
-console.log(getSumOfDigits(91))
