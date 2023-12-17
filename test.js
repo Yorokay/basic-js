@@ -134,24 +134,76 @@
 // console.log(hy('6.555955979600091'))
 
 // arr = [-1, 150, 190, 170, -1, -1, 160, 180]
-// 
+//
 // The result should be [-1, 150, 160, 170, -1, -1, 180, 190]
 
-function sortByHeight(arr) {
-	for (let i = 0; i < arr.length - 1; i++) {
-		if (arr[i] === -1) continue;
-		let min = arr[i];
-		for (let j = i + 1; j < arr.length; j++) {
-			if (arr[j] === -1) continue;
-			if (arr[j] < min) {
-				let current = arr[i];
-				min = arr[j];
-				arr[j] = current;
-				arr[i] = min;
-			}
-		}
-	}
-	return arr;
-}
+// function sortByHeight(arr) {
+// 	for (let i = 0; i < arr.length - 1; i++) {
+// 		if (arr[i] === -1) continue;
+// 		let min = arr[i];
+// 		for (let j = i + 1; j < arr.length; j++) {
+// 			if (arr[j] === -1) continue;
+// 			if (arr[j] < min) {
+// 				let current = arr[i];
+// 				min = arr[j];
+// 				arr[j] = current;
+// 				arr[i] = min;
+// 			}
+// 		}
+// 	}
+// 	return arr;
+// }
 
-console.log(sortByHeight([-1, 150, 190, 170, -1, -1, 160, 180]))
+// console.log(sortByHeight([-1, 150, 190, 170, -1, -1, 160, 180]))
+
+// const fakeDate = {
+// 	toString() {
+// 		return Date.prototype.toString.call(new Date());
+// 	},
+// 	[Symbol.toStringTag]: 'Date'
+// };
+
+// Object.setPrototypeOf(fakeDate, Object.getPrototypeOf(new Date()));
+
+// try {
+// 	fakeDate.getDate();
+// }
+// catch (err) {
+// 	throw new Error('lol');
+// }
+
+
+const deeperFakeDate = {
+	toString() {
+		return Date.prototype.toString.call(new Date());
+	},
+	getMonth() {
+		return Date.prototype.getMonth.call(new Date());
+	},
+	getFullYear() {
+		return Date.prototype.getFullYear.call(new Date(1994, 1, 2, 3, 4, 5));
+	},
+	getDate() {
+		return Date.prototype.getDate.call(new Date(2020, 0, 3, 4, 5, 6));
+	},
+	getHours() {
+		return Date.prototype.getHours.call(new Date(1978, 2, 4, 5, 6, 7));
+	},
+	getMinutes() {
+		return Date.prototype.getMinutes.call(new Date(202, 3, 5, 6, 7, 8));
+	},
+	getSeconds() {
+		return Date.prototype.getSeconds.call(new Date(1, 4, 6, 7, 8, 9));
+	},
+	getMilliseconds() {
+		return Date.prototype.getMilliseconds.call(new Date(2019, 7, 8, 9, 10, 11));
+	},
+	getDay() {
+		return Date.prototype.getDay.call(new Date(1812, 8, 9, 10, 11, 12));
+	},
+	[Symbol.toStringTag]: 'Date'
+};
+
+Object.setPrototypeOf(deeperFakeDate, Object.getPrototypeOf(new Date()));
+
+console.log(deeperFakeDate.setDate(20))
