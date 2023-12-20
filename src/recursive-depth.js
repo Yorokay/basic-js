@@ -25,6 +25,11 @@ class DepthCalculator {
 
 		let result = 1;
 		let maxDepth = 1;
+
+		if (arr.every(item => typeof item !== 'object')) {
+			return result;
+		}
+
 		if (arr.length === 0) {
 			return result;
 		}
