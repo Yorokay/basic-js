@@ -69,6 +69,6 @@ module.exports = {
 };
 
 // console.log(transform(['--double-next', { foo: 'bar' }]));
-console.log(transform(['--discrard-prev', true, '--double-prev', 1]));
+
 
 

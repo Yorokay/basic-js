@@ -207,3 +207,101 @@
 // Object.setPrototypeOf(deeperFakeDate, Object.getPrototypeOf(new Date()));
 
 // console.log(deeperFakeDate.setDate())
+
+// class DepthCalculator {
+
+// 	constructor() {
+// 		this.depthValue = 0;
+// 	}
+
+// 	calculateDepth(arr) {
+// 		let arrCopy = [arr];
+// 		try {
+// 			arrCopy[0].join('');
+// 		} catch (err) {
+// 			return this.depthValue;
+// 		}
+
+// 		if (arr.length === 0) {
+// 			this.depthValue++;
+// 			return this.depthValue;
+// 		}
+// 		else {
+
+// 			for (let i = 0; i < arr.length; i++) {
+// 				let arrayFlag = true;
+// 				let currentArrayCopy = [arr[i]];
+
+// 				try {
+// 					currentArrayCopy[0].join('');
+// 				} catch (err) {
+// 					arrayFlag = false;
+// 				}
+
+// 				if (arrayFlag) {
+// 					arr = arr.flat();
+// 					this.depthValue++;
+// 					i--;
+// 					// this.calculateDepth(arr);
+// 				}
+// 			}
+// 		}
+
+// 		return ++this.depthValue;
+// 	}
+// };
+
+class DepthCalculator {
+
+	calculateDepth(arr) {
+
+		let arrCopy = [arr];
+		try {
+			arrCopy[0].join('');
+		} catch (err) {
+			return 0;
+		}
+
+		let result = 1;
+		let maxDepth = 1;
+		if (arr.length === 0) {
+			return result;
+		}
+		else {
+			for (let i = 0; i < arr.length; i++) {
+				result = 1;
+				let arrayFlag = true;
+				let currentArrayCopy = [arr[i]];
+
+				try {
+					currentArrayCopy[0].join('');
+				} catch (err) {
+					arrayFlag = false;
+				}
+
+				if (arrayFlag) {
+					result += this.calculateDepth(arr[i]);
+				}
+
+				if (result > maxDepth) {
+					maxDepth = result;
+				}
+			}
+		}
+
+		return maxDepth;
+	}
+};
+
+let arr = [1, 2, 3, 4, 5, ['lol', 'lul', [null]], ['']];
+let arr2 = [[8, [[1], 2]], [8, []], []];
+// console.log(arr2[0][1].flat())
+
+let calc = new DepthCalculator();
+// console.log(calc.calculateDepth(arr2))
+console.log(calc.calculateDepth([1, [8, [[]]], [[[[[[[[[[[[[[[[[[[[[[[[[[[[[[]]]]]]], []]]], []]]]]]]]], []]]], []]]]]]]]]], 2, 3, [8, [[[[[[[[[[[[[[]]]]]]]]]]]]]]], [8, [[[[[[[[[[[[[[[[[[[[[[[]]]]]]]]]]]]]]]]]]]]]]]], 4, 5, ['6575', ['adas', ['dfg', [0]]]]]))
+
+// console.log([1, [8, [[]]], [[[[[[[[[[[[[[[[[[[[[[[[[[[[[[]]]]]]], []]]], []]]]]]]]], []]]], []]]]]]]]]], 2, 3, [8, [[[[[[[[[[[[[[]]]]]]]]]]]]]]], [8, [[[[[[[[[[[[[[[[[[[[[[[]]]]]]]]]]]]]]]]]]]]]]]], 4, 5, ['6575', ['adas', ['dfg', [0]]]]].flat(30));
+
+//считать кол-во пустых массивов на первом цикле, потом вторым циклом поднимать уровни .flat() и считать сколько было поднятий
+//и проверять все ли массивы на одном уровне с помощью try{метод объекта}catch{}, если метод срабатывает то повторяем цикл с .flat();
