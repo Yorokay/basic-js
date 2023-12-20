@@ -54,7 +54,3 @@ module.exports = {
 	repeater
 };
 
-// console.log(repeater('STRING', {
-// 	repeatTimes: 3, separator: '**',
-// 	addition: 'PLUS', additionRepeatTimes: 3, additionSeparator: '00'
-// }))
